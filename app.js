@@ -2,7 +2,7 @@ const movies = ['Star Wars', 'Empire Strikes Back', 'Return of the Jedi', 'The P
 const trilogies = ['Star Wars', 'Empire Strikes Back', 'Return of the Jedi', 'The Phantom Menace', 'Attack of the Clones', 'Revenge of the Sith', 'The Force Awakens', 'The Last Jedi'];
 
 $(document).on('click', '.movie', function() {
-  $(this).clone().appendTo('.rankList');
+  $(this).appendTo('.rankList');
   $(this).removeClass('movie');
   $(this).addClass('ranking');
 })
