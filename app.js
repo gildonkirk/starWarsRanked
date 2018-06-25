@@ -1,4 +1,4 @@
-const movies = ['Star Wars', 'Empire Strikes Back', 'Return of the Jedi', 'The Phantom Menace', 'Attack of the Clones', 'Revenge of the Sith', 'The Force Awakens', 'Rogue One', 'The Last Jedi', 'Solo'];
+const movies = ['Star Wars', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'Rogue One: A Star Wars Story', 'The Last Jedi', 'Solo: A Star Wars Story'];
 let moviesRanked = {
 
 }
@@ -31,10 +31,10 @@ $.ajax({
 for(i = 0; i < movies.length; i++) {
   movieTitle = movies[i].replace(/ /g, '+');
   console.log(movieTitle);
-  // $.ajax({
-  //   url: `http://www.omdbapi.com/?apikey=${omdbKey}&t=${movieTitle}`,
-  //   method: "GET"
-  // }).done(function(response) {
-  //   console.log(response);
-  // });
+  $.ajax({
+    url: `http://www.omdbapi.com/?apikey=${omdbKey}&t=${movieTitle}`,
+    method: "GET"
+  }).done(function(response) {
+    console.log(response);
+  });
 }
