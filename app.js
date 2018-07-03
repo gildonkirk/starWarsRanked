@@ -19,8 +19,8 @@ $(document).on('click', '.movie', function() {
   if(userRanking.length > 9) {
     $('.movieList').remove();
     $('.movieListHeader').remove();
-
     $('.rankList').after('<ol class="rottenList"></ol>');
+    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Scores</h3>');
     for(i = 0; i < data.length; i++) {
       $('.rottenList').append(`<li class="ranking">${data[i].Title}</li>`);
     }
