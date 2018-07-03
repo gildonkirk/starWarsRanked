@@ -43,7 +43,7 @@ for(i = 0; i < movies.length; i++) {
     if(data.length > 9) {
       data.sort(movieSort);
       console.log(data);
-    }
+    };
   });
 }
 
