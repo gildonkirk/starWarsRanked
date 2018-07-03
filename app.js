@@ -1,13 +1,14 @@
 const movies = ['Star Wars', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'Rogue One: A Star Wars Story', 'The Last Jedi', 'Solo: A Star Wars Story'];
 let data = [];
 let userRanking = [];
-let rottenTomatoesRanking = [];
+const omdbKey = '400f5810';
+let movieTitle = 'Star+Wars';
 // function Movie(name, date, rank) {
 //   this.name = name;
 //   this.releaseDate = date;
 //   this.ranking = rank;
 // }
-
+$(document).ready(rottenRanking());
 $(document).on('click', '.movie', function() {
   $(this).removeClass('movie');
   $(this).addClass('ranking');
@@ -18,13 +19,15 @@ $(document).on('click', '.movie', function() {
   if(userRanking.length > 9) {
     $('.movieList').remove();
     $('.movieListHeader').remove();
-    rottenRanking();
-    $('.rankList').after('<ol class="rotten"><li>Hey</li></ol>');
+
+    $('.rankList').after('<ol class="rottenList"></ol>');
+    for(i = 0; i < data.length; i++) {
+      $('.rottenList').append(`<li class="ranking">${data[i].Title}</li>`);
+    }
   }
 });
 
-const omdbKey = '400f5810';
-let movieTitle = 'Star+Wars';
+
 
 // $.ajax({
 //   url: `http://www.omdbapi.com/?apikey=${omdbKey}&t=${movieTitle}`,
