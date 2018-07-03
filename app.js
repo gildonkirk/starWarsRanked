@@ -22,7 +22,7 @@ $(document).on('click', '.movie', function() {
     $('.rankList').after('<ol class="rottenList"></ol>');
     $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Scores</h3>');
     for(i = 0; i < data.length; i++) {
-      $('.rottenList').append(`<li class="ranking">${data[i].Title}</li>`);
+      $('.rottenList').append(`<li class="ranking">${data[i].Ratings[1].Value} - ${data[i].Title}</li>`);
     }
   }
 });
