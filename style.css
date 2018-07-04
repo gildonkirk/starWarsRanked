@@ -25,3 +25,11 @@ time, mark, audio, video {
 .movie {
   cursor: pointer;
 }
+
+.ranking {
+  list-style: decimal inside;
+}
+
+.list-group-item {
+  display: list-item;
+}
