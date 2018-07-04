@@ -21,3 +21,7 @@ time, mark, audio, video {
 .ranked {
   color: #00E804;
 }
+
+.movie {
+  cursor: pointer;
+}
