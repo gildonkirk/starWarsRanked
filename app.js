@@ -48,24 +48,46 @@ function rottenRanking() {
       // console.log(response);
       data.push(response);
       if(data.length > 9) {
-        data.sort(movieSort);
+        data.sort(compareValues('Year'));
         console.log(data);
       };
     });
   };
 };
 
-function movieSort(a, b) {
-  let yearA = a.Ratings[1].Value;
-  let yearB = b.Ratings[1].Value;
-  let comparison = 0;
-  if(yearA > yearB) {
-    comparison = -1;
-  } else if(yearA < yearB) {
-    comparison = 1;
+function compareValues(key, order="asc") {
+  return function (a, b) {
+    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+    let yearA = a[key];
+    let yearB = b[key];
+    let comparison = 0;
+    if(yearA > yearB) {
+      comparison = -1;
+    } else if(yearA < yearB) {
+      comparison = 1;
+    }
+    if(order == 'desc') {
+      let comparison = (comparison * -1);
+      return comparison;
+    } else {
+      return comparison;
+    }
   }
-  return comparison;
 }
+
+// function movieSort(a, b) {
+//   let yearA = a.Ratings[1].Value;
+//   let yearB = b.Ratings[1].Value;
+//   let comparison = 0;
+//   if(yearA > yearB) {
+//     comparison = -1;
+//   } else if(yearA < yearB) {
+//     comparison = 1;
+//   }
+//   return comparison;
+// }
 
 
 
