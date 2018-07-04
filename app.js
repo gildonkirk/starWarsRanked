@@ -48,7 +48,7 @@ function rottenRanking() {
       // console.log(response);
       rottenTomatoes.push(response);
       if(rottenTomatoes.length > 9) {
-        rottenTomatoes.sort(compareValues('Ratings[1].Value'));
+        rottenTomatoes.sort(compareValues('Ratings'));
         console.log(rottenTomatoes);
       };
     });
@@ -60,8 +60,20 @@ function compareValues(key, order="asc") {
     if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0;
     }
-    let yearA = a[key].replace(/%/g, '');
-    let yearB = b[key].replace(/%/g, '');
+    let yearA;
+    let yearB;
+    if(key === 'Ratings') {
+      yearA = a[key][1].Value.replace(/%/g, '');
+      console.log(yearA);
+      yearB = b[key][1].Value.replace(/%/g, '');
+      console.log(yearB);
+    } else {
+      yearA = a[key];
+      console.log(yearA);
+      yearB = b[key];
+      console.log(yearB);
+    }
+
     let comparison = 0;
     if(yearA > yearB) {
       comparison = -1;
