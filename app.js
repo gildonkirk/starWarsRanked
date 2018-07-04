@@ -1,5 +1,5 @@
 const movies = ['Star Wars', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'Rogue One: A Star Wars Story', 'The Last Jedi', 'Solo: A Star Wars Story'];
-let data = [];
+let rottenTomatoes = [];
 let userRanking = [];
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
@@ -21,8 +21,8 @@ $(document).on('click', '.movie', function() {
     $('.movieListHeader').remove();
     $('.rankList').after('<ol class="rottenList"></ol>');
     $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Scores</h3>');
-    for(i = 0; i < data.length; i++) {
-      $('.rottenList').append(`<li class="ranking">${data[i].Ratings[1].Value} - ${data[i].Title}</li>`);
+    for(i = 0; i < rottenTomatoes.length; i++) {
+      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Ratings[1].Value} - ${rottenTomatoes[i].Title}</li>`);
     }
   }
 });
@@ -46,10 +46,10 @@ function rottenRanking() {
       method: "GET"
     }).done(function(response) {
       // console.log(response);
-      data.push(response);
-      if(data.length > 9) {
-        data.sort(compareValues('Year'));
-        console.log(data);
+      rottenTomatoes.push(response);
+      if(rottenTomatoes.length > 9) {
+        rottenTomatoes.sort(compareValues('Ratings[1].Value'));
+        console.log(rottenTomatoes);
       };
     });
   };
@@ -60,8 +60,8 @@ function compareValues(key, order="asc") {
     if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0;
     }
-    let yearA = a[key];
-    let yearB = b[key];
+    let yearA = a[key].replace(/%/g, '');
+    let yearB = b[key].replace(/%/g, '');
     let comparison = 0;
     if(yearA > yearB) {
       comparison = -1;
