@@ -1,5 +1,7 @@
 const movies = ['Star Wars', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'Rogue One: A Star Wars Story', 'The Last Jedi', 'Solo: A Star Wars Story'];
 let rottenTomatoes = [];
+let releaseDate = [];
+let imdbRatings = [];
 let userRanking = [];
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
@@ -46,10 +48,16 @@ function rottenRanking() {
       method: "GET"
     }).done(function(response) {
       // console.log(response);
+      releaseDate.push(response);
       rottenTomatoes.push(response);
-      if(rottenTomatoes.length > 9) {
+      imdbRatings.push(response);
+      if(imdbRatings.length > 9) {
+        releaseDate.sort(compareValues('Year', 'desc'));
+        console.log(releaseDate);
         rottenTomatoes.sort(compareValues('Ratings'));
         console.log(rottenTomatoes);
+        imdbRatings.sort(compareValues('imdbRating'));
+        console.log(imdbRatings);
       };
     });
   };
@@ -64,14 +72,10 @@ function compareValues(key, order="asc") {
     let yearB;
     if(key === 'Ratings') {
       yearA = a[key][1].Value.replace(/%/g, '');
-      console.log(yearA);
       yearB = b[key][1].Value.replace(/%/g, '');
-      console.log(yearB);
     } else {
       yearA = a[key];
-      console.log(yearA);
       yearB = b[key];
-      console.log(yearB);
     }
 
     let comparison = 0;
@@ -81,7 +85,7 @@ function compareValues(key, order="asc") {
       comparison = 1;
     }
     if(order == 'desc') {
-      let comparison = (comparison * -1);
+      comparison = (comparison * -1);
       return comparison;
     } else {
       return comparison;
