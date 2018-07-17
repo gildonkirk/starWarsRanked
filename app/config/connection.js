@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-var sequelize - new Sequelize('star_wars_db', 'root', 'certifiedG48*', {
+var sequelize = new Sequelize('star_wars_db', 'root', 'certifiedG48*', {
   host: 'localhost',
   dialect: 'mysql'
 });

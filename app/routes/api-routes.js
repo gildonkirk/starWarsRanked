@@ -1,7 +1,7 @@
 var Ranking = require("../models/ranking.js");
 
 module.exports = function(app) {
-  app.post('api/new', function(req, res) {
+  app.post('/api/new', function(req, res) {
     console.log('Ranking: ');
     console.log(req.body);
 
@@ -12,5 +12,12 @@ module.exports = function(app) {
       console.log('*****' + results + '*****');
       res.end();
     })
-  })
+  });
+
+  // app.get('/api/all', function(req, res) {
+  //   Ranking.findAll().then(function(results) {
+  //     console.log(results);
+  //     res.json(results);
+  //   })
+  // });
 };
