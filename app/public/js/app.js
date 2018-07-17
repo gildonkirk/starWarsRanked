@@ -30,7 +30,20 @@ $(document).on('click', '.movie', function() {
   }
 });
 
-
+$(document).on('click', '.submit', function() {
+  console.log(userRanking);
+  for(i = 0; i < userRanking.length; i++) {
+    let rating = (i + 1);
+    let movie = userRanking[i];
+    let newRanking = {
+      movie: movie,
+      rating: rating
+    };
+    $.post(;'/api/new', newRanking).done(function() {
+      console.log('Ranking Added');
+    })
+  }
+});
 
 // $.ajax({
 //   url: `http://www.omdbapi.com/?apikey=${omdbKey}&t=${movieTitle}`,
