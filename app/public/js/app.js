@@ -26,6 +26,7 @@ $(document).on('click', '.movie', function() {
     for(i = 0; i < rottenTomatoes.length; i++) {
       $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Ratings[1].Value} - ${rottenTomatoes[i].Title}</li>`);
     }
+    $('.rankList').after('<button class="submit">Submit</button>');
   }
 });
 
