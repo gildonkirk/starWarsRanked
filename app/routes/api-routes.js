@@ -9,7 +9,6 @@ module.exports = function(app) {
       movie: req.body.movie,
       rating: req.body.rating
     }).then(function(results) {
-      console.log('*****' + results + '*****');
       res.end();
     })
   });
