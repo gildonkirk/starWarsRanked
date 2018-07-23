@@ -3,16 +3,16 @@ let rottenTomatoes = [];
 let releaseDate = [];
 let imdbRatings = [];
 let userRanking = [];
+let listMovie;
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
 
 $(document).ready(rottenRanking());
 $(document).on('click', '.movie', function() {
-  $(this).removeClass('movie');
-  $(this).addClass('ranking');
-  $(this).clone().appendTo('.rankList');
-  $(this).removeClass('ranking');
-  $(this).addClass('ranked');
+  listMovie = this.innerText;
+  console.log(listMovie);
+  $(this).remove();
+  $('.rankList').append(`<li class="ranking list-group-item">${listMovie}</li>`);
   userRanking.push(this.innerText || this.textContent);
   if(userRanking.length > 9) {
     $('.movieList').remove();
