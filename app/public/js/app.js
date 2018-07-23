@@ -13,7 +13,7 @@ $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
   console.log(listMovie);
   $(this).remove();
-  $('.rankList').append(`<li class="ranking list-group-item"><span>${listMovie}</span></li>`);
+  $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
   if(userRanking.length > 9) {
     $('.movieList').remove();
@@ -25,9 +25,14 @@ $(document).on('click', '.movie', function() {
     }
     $('.rankList').after('<button class="submit">Submit</button>');
   }
+  console.log($('.rankList li').length);
 });
 
 $(document).on('click', '.submit', function() {
+  userRanking = [];
+  $('.userRanking').each(function() {
+    userRanking.push(this.innerText || this.textContent);
+  })
   console.log(userRanking);
   for(i = 0; i < userRanking.length; i++) {
     let rating = (i + 1);
