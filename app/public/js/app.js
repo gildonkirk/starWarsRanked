@@ -11,7 +11,6 @@ $('#sortable').sortable();
 $(document).ready(rottenRanking());
 $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
-  console.log(listMovie);
   $(this).remove();
   $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
@@ -20,12 +19,14 @@ $(document).on('click', '.movie', function() {
     $('.movieListHeader').remove();
     $('.rankList').after('<ol class="rottenList"></ol>');
     $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Scores</h3>');
+    $('.rottenList').after('<ol class="imdbList"></ol>');
+    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Scores</h3>');
     for(i = 0; i < rottenTomatoes.length; i++) {
-      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Ratings[1].Value} - ${rottenTomatoes[i].Title}</li>`);
+      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
+      $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
     }
     $('.rankList').after('<button class="submit">Submit</button>');
   }
-  console.log($('.rankList li').length);
 });
 
 $(document).on('click', '.submit', function() {
