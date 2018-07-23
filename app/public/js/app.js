@@ -7,6 +7,7 @@ let listMovie;
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
 
+$('#sortable').sortable();
 $(document).ready(rottenRanking());
 $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
