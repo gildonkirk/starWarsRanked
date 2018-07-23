@@ -12,7 +12,7 @@ $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
   console.log(listMovie);
   $(this).remove();
-  $('.rankList').append(`<li class="ranking list-group-item">${listMovie}</li>`);
+  $('.rankList').append(`<li class="ranking list-group-item"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
   if(userRanking.length > 9) {
     $('.movieList').remove();
