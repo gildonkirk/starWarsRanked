@@ -13,10 +13,9 @@ module.exports = function(app) {
     })
   });
 
-  // app.get('/api/all', function(req, res) {
-  //   Ranking.findAll().then(function(results) {
-  //     console.log(results);
-  //     res.json(results);
-  //   })
-  // });
+  app.get('/api/all', function(req, res) {
+    Ranking.findAll().then(function(results) {
+      res.json(results);
+    })
+  });
 };

@@ -3,12 +3,18 @@ let rottenTomatoes = [];
 let releaseDate = [];
 let imdbRatings = [];
 let userRanking = [];
+let dbRatings = [];
 let listMovie;
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
 
 $('#sortable').sortable();
-$(document).ready(rottenRanking());
+$(document).ready(function() {
+  rottenRanking();
+  $.get('/api/all', function(data) {
+    console.log(data);
+  });
+});
 $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
   $(this).remove();
@@ -18,9 +24,9 @@ $(document).on('click', '.movie', function() {
     $('.movieList').remove();
     $('.movieListHeader').remove();
     $('.rankList').after('<ol class="rottenList"></ol>');
-    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Scores</h3>');
+    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Ratings</h3>');
     $('.rottenList').after('<ol class="imdbList"></ol>');
-    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Scores</h3>');
+    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Ratings</h3>');
     for(i = 0; i < rottenTomatoes.length; i++) {
       $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
       $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
