@@ -3,7 +3,7 @@ let rottenTomatoes = [];
 let releaseDate = [];
 let imdbRatings = [];
 let userRanking = [];
-let dbRatings = [];
+let dbRatings;
 let listMovie;
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
@@ -12,7 +12,9 @@ $('#sortable').sortable();
 $(document).ready(function() {
   rottenRanking();
   $.get('/api/all', function(data) {
-    console.log(data);
+    dbRatings = data;
+    dbRatings.sort(compareValues('avg_rating', 'desc'));
+    console.log(dbRatings);
   });
 });
 $(document).on('click', '.movie', function() {
