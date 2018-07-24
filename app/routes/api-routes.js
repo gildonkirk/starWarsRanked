@@ -17,12 +17,11 @@ module.exports = function(app) {
 
   app.get('/api/all', function(req, res) {
     Ranking.findAll({
-      where: {
-        movie: 'Star Wars: Episode V - The Empire Strikes Back'
-      },
-      attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'avg_rating']]
+      group: 'movie',
+      attributes: ['movie', [sequelize.fn('AVG', sequelize.col('rating')), 'avg_rating']]
     }).then(function(results) {
       res.json(results);
     })
   });
+
 };
