@@ -1,4 +1,6 @@
 var Ranking = require("../models/ranking.js");
+const Sequelize = require('sequelize');
+var sequelize = require('../config/connection.js');
 
 module.exports = function(app) {
   app.post('/api/new', function(req, res) {
@@ -14,7 +16,12 @@ module.exports = function(app) {
   });
 
   app.get('/api/all', function(req, res) {
-    Ranking.findAll().then(function(results) {
+    Ranking.findAll({
+      where: {
+        movie: 'Star Wars: Episode V - The Empire Strikes Back'
+      },
+      attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'avg_rating']]
+    }).then(function(results) {
       res.json(results);
     })
   });
