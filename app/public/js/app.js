@@ -1,4 +1,4 @@
-const movies = ['Star Wars: Episode IV - A New Hope', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'Rogue One: A Star Wars Story', 'The Last Jedi', 'Solo: A Star Wars Story'];
+const movies = ['Star Wars: Episode IV - A New Hope', 'Star Wars: Episode V - The Empire Strikes Back', 'Star Wars: Episode VI - Return of the Jedi', 'Star Wars: Episode I - The Phantom Menace', 'Star Wars: Episode II - Attack of the Clones', 'Star Wars: Episode III - Revenge of the Sith', 'The Force Awakens', 'The Last Jedi'];
 let rottenTomatoes = [];
 let releaseDate = [];
 let imdbRatings = [];
@@ -9,6 +9,7 @@ const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
 
 $('#sortable').sortable();
+
 $(document).ready(function() {
   rottenRanking();
   $.get('/api/all', function(data) {
@@ -17,12 +18,13 @@ $(document).ready(function() {
     console.log(dbRatings);
   });
 });
+
 $(document).on('click', '.movie', function() {
   listMovie = this.innerText;
   $(this).remove();
   $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
-  if(userRanking.length > 9) {
+  if(userRanking.length > 7) {
     $('.movieList').remove();
     $('.movieListHeader').remove();
     $('.rankList').after('<ol class="rottenList"></ol>');
@@ -32,10 +34,16 @@ $(document).on('click', '.movie', function() {
     for(i = 0; i < rottenTomatoes.length; i++) {
       $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
       $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
-    }
-    $('.rankList').after('<button class="submit">Submit</button>');
+    };
+    $('.rankList').after('<input value="Username" class="username unselected"></button>');
+    $('.username').after('<button class="submit">Submit</button>');
   }
 });
+
+$(document).on('click', '.unselected', function() {
+  $('.unselected').val('');
+  $('.username').removeClass('unselected');
+})
 
 $(document).on('click', '.submit', function() {
   userRanking = [];
@@ -46,7 +54,9 @@ $(document).on('click', '.submit', function() {
   for(i = 0; i < userRanking.length; i++) {
     let rating = (i + 1);
     let movie = userRanking[i];
+    let username = $('.username').val().trim();
     let newRanking = {
+      username: username,
       movie: movie,
       rating: rating
     };
@@ -67,7 +77,7 @@ function rottenRanking() {
       releaseDate.push(response);
       rottenTomatoes.push(response);
       imdbRatings.push(response);
-      if(imdbRatings.length > 9) {
+      if(imdbRatings.length > 7) {
         releaseDate.sort(compareValues('Year', 'desc'));
         console.log(releaseDate);
         rottenTomatoes.sort(compareValues('Ratings'));
