@@ -20,21 +20,7 @@ $(document).on('click', '.movie', function() {
   $(this).remove();
   $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
-  if(userRanking.length > 7) {
-    $('.movieList').remove();
-    $('.movieListHeader').remove();
-    $('.rankList').after('<ol class="rottenList"></ol>');
-    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Ratings</h3>');
-    $('.rottenList').after('<ol class="imdbList"></ol>');
-    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Ratings</h3>');
-    for(i = 0; i < rottenTomatoes.length; i++) {
-      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
-      $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
-    };
-    $('.rankList').after('<input value="First Name" class="firstName unselected">');
-    $('.firstName').after('<input value="Last Name" class="lastName unselected">');
-    $('.lastName').after('<button class="submit">Submit</button>');
-  }
+  lastRanking();
 });
 
 $(document).on('click', '.unselected', function() {
@@ -66,8 +52,8 @@ $(document).on('click', '.submit', function() {
     };
     $.post('/api/new', newRanking).done(function() {
       console.log('Ranking Added');
-    })
-  }
+    });
+  };
 });
 
 function dbAverages() {
@@ -98,6 +84,24 @@ function rottenRanking() {
         console.log(imdbRatings);
       };
     });
+  };
+};
+
+function lastRanking() {
+  if(userRanking.length > 7) {
+    $('.movieList').remove();
+    $('.movieListHeader').remove();
+    $('.rankList').after('<ol class="rottenList"></ol>');
+    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Ratings</h3>');
+    $('.rottenList').after('<ol class="imdbList"></ol>');
+    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Ratings</h3>');
+    for(i = 0; i < rottenTomatoes.length; i++) {
+      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
+      $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
+    };
+    $('.rankList').after('<input value="First Name" class="firstName unselected">');
+    $('.firstName').after('<input value="Last Name" class="lastName unselected">');
+    $('.lastName').after('<button class="submit">Submit</button>');
   };
 };
 
