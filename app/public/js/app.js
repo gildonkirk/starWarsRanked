@@ -11,12 +11,8 @@ let movieTitle = 'Star+Wars';
 $('#sortable').sortable();
 
 $(document).ready(function() {
+  dbAverages();
   rottenRanking();
-  $.get('/api/all', function(data) {
-    dbRatings = data;
-    dbRatings.sort(compareValues('avg_rating', 'desc'));
-    console.log(dbRatings);
-  });
 });
 
 $(document).on('click', '.movie', function() {
@@ -73,6 +69,14 @@ $(document).on('click', '.submit', function() {
     })
   }
 });
+
+function dbAverages() {
+  $.get('/api/all', function(data) {
+    dbRatings = data;
+    dbRatings.sort(compareValues('avg_rating', 'desc'));
+    console.log(dbRatings);
+  });
+};
 
 function rottenRanking() {
   for(i = 0; i < movies.length; i++) {
