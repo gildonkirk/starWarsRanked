@@ -2,7 +2,10 @@ const Sequelize = require('sequelize');
 var sequelize = require('../config/connection.js');
 
 var Ranking = sequelize.define('ranking', {
-  username: {
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
     type: Sequelize.STRING
   },
   movie: {

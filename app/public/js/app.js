@@ -35,15 +35,21 @@ $(document).on('click', '.movie', function() {
       $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
       $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
     };
-    $('.rankList').after('<input value="Username" class="username unselected"></button>');
-    $('.username').after('<button class="submit">Submit</button>');
+    $('.rankList').after('<input value="First Name" class="firstName unselected">');
+    $('.firstName').after('<input value="Last Name" class="lastName unselected">');
+    $('.lastName').after('<button class="submit">Submit</button>');
   }
 });
 
 $(document).on('click', '.unselected', function() {
-  $('.unselected').val('');
-  $('.username').removeClass('unselected');
-})
+  if($(this).hasClass('firstName')) {
+    $('.firstName').val('');
+    $('.firstName').removeClass('unselected');
+  } else if($(this).hasClass('lastName')) {
+    $('.lastName').val('');
+    $('.lastName').removeClass('unselected');
+  };
+});
 
 $(document).on('click', '.submit', function() {
   userRanking = [];
@@ -54,9 +60,11 @@ $(document).on('click', '.submit', function() {
   for(i = 0; i < userRanking.length; i++) {
     let rating = (i + 1);
     let movie = userRanking[i];
-    let username = $('.username').val().trim();
+    let firstName = $('.firstName').val().trim().toLowerCase();
+    let lastName = $('.lastName').val().trim().toLowerCase();
     let newRanking = {
-      username: username,
+      firstName: firstName,
+      lastName: lastName,
       movie: movie,
       rating: rating
     };

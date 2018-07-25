@@ -8,7 +8,8 @@ module.exports = function(app) {
     console.log(req.body);
 
     Ranking.create({
-      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       movie: req.body.movie,
       rating: req.body.rating
     }).then(function(results) {
