@@ -8,9 +8,12 @@ let listMovie;
 const omdbKey = '400f5810';
 let movieTitle = 'Star+Wars';
 
+
 $('#sortable').sortable();
 
 $(document).ready(function() {
+  $('.homepage').hide();
+  displayHomepage();
   dbAverages();
   rottenRanking();
 });
@@ -103,6 +106,13 @@ function lastRanking() {
     $('.firstName').after('<input value="Last Name" class="lastName unselected">');
     $('.lastName').after('<button class="submit">Submit</button>');
   };
+};
+
+function displayHomepage() {
+  $(document).on('click', '.instrucButton', function() {
+    $('.instructions').hide();
+    $('.homepage').show();
+  })
 };
 
 function compareValues(key, order="asc") {
