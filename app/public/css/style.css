@@ -18,6 +18,14 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 } */
+
+.homepage {
+  display: none;
+};
+
+.rankListHeader {
+  display: none;
+}
 .ranked {
   color: #00E804;
 }

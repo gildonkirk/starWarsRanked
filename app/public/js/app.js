@@ -10,10 +10,10 @@ let movieTitle = 'Star+Wars';
 
 
 $('#sortable').sortable();
+$('.homepage').hide();
+$('.rankListHeader').hide();
 
 $(document).ready(function() {
-  $('.homepage').hide();
-  $('.rankListHeader').hide();
   displayHomepage();
   dbAverages();
   rottenRanking();
