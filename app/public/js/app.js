@@ -25,7 +25,7 @@ $(document).on('click', '.movie', function() {
   }
   listMovie = this.innerText;
   $(this).remove();
-  $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
+  $('.rankList').append(`<li class="ranking userRanking list-group-item draggable"><span>${listMovie}</span></li>`);
   userRanking.push(this.innerText || this.textContent);
   lastRanking();
 });
@@ -41,10 +41,11 @@ $(document).on('click', '.unselected', function() {
 });
 
 $(document).on('click', '.submit', function() {
+  $('.userRanking').removeClass('draggable');
   userRanking = [];
   $('.userRanking').each(function() {
     userRanking.push(this.innerText || this.textContent);
-  })
+  });
   console.log(userRanking);
   for(i = 0; i < userRanking.length; i++) {
     let rating = (i + 1);

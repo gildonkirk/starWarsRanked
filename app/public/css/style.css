@@ -26,6 +26,10 @@ time, mark, audio, video {
   cursor: pointer;
 }
 
+.draggable {
+  cursor: move;
+}
+
 .ranking {
   list-style: decimal inside;
 }
