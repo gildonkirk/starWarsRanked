@@ -13,12 +13,16 @@ $('#sortable').sortable();
 
 $(document).ready(function() {
   $('.homepage').hide();
+  $('.rankListHeader').hide();
   displayHomepage();
   dbAverages();
   rottenRanking();
 });
 
 $(document).on('click', '.movie', function() {
+  if(userRanking.length === 0) {
+    $('.rankListHeader').show();
+  }
   listMovie = this.innerText;
   $(this).remove();
   $('.rankList').append(`<li class="ranking userRanking list-group-item"><span>${listMovie}</span></li>`);
