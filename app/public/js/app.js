@@ -95,19 +95,30 @@ function rottenRanking() {
 
 function lastRanking() {
   if(userRanking.length > 7) {
-    $('.movieList').remove();
-    $('.movieListHeader').remove();
-    $('.rankList').after('<ol class="rottenList"></ol>');
-    $('.rankList').after('<h3 class="listHeader rankListHeader">Rotten Tomatoes Ratings</h3>');
-    $('.rottenList').after('<ol class="imdbList"></ol>');
-    $('.rottenList').after('<h3 class="listHeader rankListHeader">IMDB Ratings</h3>');
+    $('.movieListContainer').remove();
+    $('.homepage').append('<div class="row formRow"><div>');
+    $('.homepage').append('<div class="row infoRow"><div>');
+
+    $('.formRow').append('<div class="col-sm formCol"></div>')
+
+    $('.infoRow').append('<div class="col-sm infoCol rottenContainer"></div>')
+    $('.infoRow').append('<div class="col-sm infoCol imdbContainer"></div>')
+    $('.infoRow').append('<div class="col-sm infoCol siteAvgContainer"></div>')
+
+    $('.formCol').append('<input value="First Name" class="firstName unselected">');
+    $('.formCol').append('<input value="Last Name" class="lastName unselected">');
+    $('.formCol').append('<button class="submit">Submit</button>');
+
+    $('.rottenContainer').append('<h3 class="listHeader rankListHeader rottenListHeader">Rotten Tomatoes Ratings</h3>');
+    $('.imdbContainer').append('<h3 class="listHeader rankListHeader imdbListHeader">IMDB Ratings</h3>');
+
+    $('.rottenContainer').append('<ol class="rottenList"></ol>');
+    $('.imdbContainer').append('<ol class="imdbList"></ol>');
+    
     for(i = 0; i < rottenTomatoes.length; i++) {
       $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
       $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
     };
-    $('.rankList').after('<input value="First Name" class="firstName unselected">');
-    $('.firstName').after('<input value="Last Name" class="lastName unselected">');
-    $('.lastName').after('<button class="submit">Submit</button>');
   };
 };
 
