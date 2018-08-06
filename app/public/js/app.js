@@ -60,6 +60,7 @@ $(document).on('click', '.submit', function() {
       console.log('Ranking Added');
     });
   };
+  showRankings();
 });
 
 function dbAverages() {
@@ -83,11 +84,8 @@ function rottenRanking() {
       imdbRatings.push(response);
       if(imdbRatings.length > 7) {
         releaseDate.sort(compareValues('Year', 'desc'));
-        console.log(releaseDate);
         rottenTomatoes.sort(compareValues('Ratings'));
-        console.log(rottenTomatoes);
         imdbRatings.sort(compareValues('imdbRating'));
-        console.log(imdbRatings);
       };
     });
   };
@@ -96,29 +94,14 @@ function rottenRanking() {
 function lastRanking() {
   if(userRanking.length > 7) {
     $('.movieListContainer').remove();
+
     $('.homepage').append('<div class="row formRow"><div>');
-    $('.homepage').append('<div class="row infoRow"><div>');
 
     $('.formRow').append('<div class="col-sm formCol"></div>')
-
-    $('.infoRow').append('<div class="col-sm infoCol rottenContainer"></div>')
-    $('.infoRow').append('<div class="col-sm infoCol imdbContainer"></div>')
-    $('.infoRow').append('<div class="col-sm infoCol siteAvgContainer"></div>')
 
     $('.formCol').append('<input value="First Name" class="firstName unselected">');
     $('.formCol').append('<input value="Last Name" class="lastName unselected">');
     $('.formCol').append('<button class="submit">Submit</button>');
-
-    $('.rottenContainer').append('<h3 class="listHeader rankListHeader rottenListHeader">Rotten Tomatoes Ratings</h3>');
-    $('.imdbContainer').append('<h3 class="listHeader rankListHeader imdbListHeader">IMDB Ratings</h3>');
-
-    $('.rottenContainer').append('<ol class="rottenList"></ol>');
-    $('.imdbContainer').append('<ol class="imdbList"></ol>');
-    
-    for(i = 0; i < rottenTomatoes.length; i++) {
-      $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
-      $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
-    };
   };
 };
 
@@ -127,6 +110,30 @@ function displayHomepage() {
     $('.instructions').hide();
     $('.homepage').show();
   })
+};
+
+function showRankings() {
+  $('.homepage').append('<div class="row infoRow"><div>');
+
+  $('.infoRow').append('<div class="col-sm infoCol rottenContainer"></div>')
+  $('.infoRow').append('<div class="col-sm infoCol imdbContainer"></div>')
+  $('.infoRow').append('<div class="col-sm infoCol siteAvgContainer"></div>')
+
+
+
+  $('.rottenContainer').append('<h3 class="listHeader rankListHeader rottenListHeader">Rotten Tomatoes Ratings</h3>');
+  $('.imdbContainer').append('<h3 class="listHeader rankListHeader imdbListHeader">IMDB Ratings</h3>');
+  $('.siteAvgContainer').append('<h3 class="listHeader rankListHeader siteAvgListHeader">SW Ranked Average Rankings</h3>');
+
+  $('.rottenContainer').append('<ol class="rottenList"></ol>');
+  $('.imdbContainer').append('<ol class="imdbList"></ol>');
+  $('.siteAvgContainer').append('<ol class="siteAvgList"></ol>');
+
+  for(i = 0; i < rottenTomatoes.length; i++) {
+    $('.rottenList').append(`<li class="ranking">${rottenTomatoes[i].Title} - ${rottenTomatoes[i].Ratings[1].Value}</li>`);
+    $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
+    $('.siteAvgList').append(`<li class="ranking">${dbRatings[i].movie}`);
+  };
 };
 
 function compareValues(key, order="asc") {
