@@ -1,4 +1,4 @@
-/* html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -17,15 +17,20 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-} */
+}
 
 .homepage {
   display: none;
-};
+}
 
-.rankListHeader {
+.rankListContainer {
   display: none;
 }
+
+.siteHeader {
+  text-align: center;
+}
+
 .ranked {
   color: #00E804;
 }
@@ -42,6 +47,6 @@ time, mark, audio, video {
   list-style: decimal inside;
 }
 
-.list-group-item {
+.userRanking {
   display: list-item;
 }

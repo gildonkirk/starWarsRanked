@@ -10,8 +10,6 @@ let movieTitle = 'Star+Wars';
 
 
 $('#sortable').sortable();
-$('.homepage').hide();
-$('.rankListHeader').hide();
 
 $(document).ready(function() {
   displayHomepage();
@@ -21,7 +19,7 @@ $(document).ready(function() {
 
 $(document).on('click', '.movie', function() {
   if(userRanking.length === 0) {
-    $('.rankListHeader').show();
+    $('.rankListContainer').show();
   }
   listMovie = this.innerText;
   $(this).remove();

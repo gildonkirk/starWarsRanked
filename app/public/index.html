@@ -11,9 +11,10 @@
     <title>Star Wars Ranked</title>
   </head>
   <body>
-    <div class="instructions">
-      <h1 class="instrucBody">Star Wars Ranked</h1>
-      <p>
+    <h1 class="siteHeader siteHeaderTop">Star Wars</h1>
+    <h1 class="siteHeader siteHeaderBottom">Ranked</h1>
+    <div class="instructions container">
+      <p class="instrucBody">
         Welcome! Rank your favorite Star Wars movies from first to last,
         then see how they stack up against <a href="http://www.starwarsminute.com/" target="_blank">Star Wars Minute</a> guests, popular
         ranking databases, and other site users. Got it? Hit done and get started.
@@ -23,23 +24,27 @@
       </p>
       <button type="button" class="instrucButton">Done</button>
     </div>
-    <div class="homepage">
-      <h1 class="siteTitle">Star Wars Ranked</h1>
-      <h2 class="siteDescription">Rank your favorite Star Wars Films, then see how your rankings stack up</h2>
-      <h3 class="listHeader movieListHeader">Movies (Release Order)</h3>
-      <ul class="movieList list-group">
-        <li class="movie starWars list-group-item">Star Wars: Episode IV - A New Hope</li>
-        <li class="movie empire list-group-item">Star Wars: Episode V - The Empire Strikes Back</li>
-        <li class="movie jedi list-group-item">Star Wars: Episode VI - Return of the Jedi</li>
-        <li class="movie menace list-group-item">Star Wars: Episode I - The Phantom Menace</li>
-        <li class="movie clones list-group-item">Star Wars: Episode II - Attack of the Clones</li>
-        <li class="movie sith list-group-item">Star Wars: Episode III - Revenge of the Sith</li>
-        <li class="movie awakens list-group-item">Star Wars: The Force Awakens</li>
-        <li class="movie lastJedi list-group-item">Star Wars: The Last Jedi</li>
-      </ul>
-      <h3 class="listHeader rankListHeader">Your Ranking</h3>
-      <ol class="rankList list-group" id="sortable">
-      </ol>
+    <div class="homepage container">
+      <div class="row">
+        <div class="movieListContainer col-sm">
+          <h3 class="listHeader movieListHeader">Movies (Release Order)</h3>
+          <ul class="movieList list-group">
+            <li class="movie starWars list-group-item">Star Wars: Episode IV - A New Hope</li>
+            <li class="movie empire list-group-item">Star Wars: Episode V - The Empire Strikes Back</li>
+            <li class="movie jedi list-group-item">Star Wars: Episode VI - Return of the Jedi</li>
+            <li class="movie menace list-group-item">Star Wars: Episode I - The Phantom Menace</li>
+            <li class="movie clones list-group-item">Star Wars: Episode II - Attack of the Clones</li>
+            <li class="movie sith list-group-item">Star Wars: Episode III - Revenge of the Sith</li>
+            <li class="movie awakens list-group-item">Star Wars: The Force Awakens</li>
+            <li class="movie lastJedi list-group-item">Star Wars: The Last Jedi</li>
+          </ul>
+        </div>
+        <div class="rankListContainer col-sm">
+          <h3 class="listHeader rankListHeader">Your Ranking</h3>
+          <ol class="rankList list-group" id="sortable">
+          </ol>
+        </div>
+      </div>
     </div>
   </body>
   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
