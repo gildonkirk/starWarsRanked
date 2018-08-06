@@ -134,6 +134,7 @@ function showRankings() {
     $('.imdbList').append(`<li class="ranking">${imdbRatings[i].Title} - ${imdbRatings[i].imdbRating}/10</li>`);
     $('.siteAvgList').append(`<li class="ranking">${dbRatings[i].movie}`);
   };
+  $('.formRow').remove();
 };
 
 function compareValues(key, order="asc") {
